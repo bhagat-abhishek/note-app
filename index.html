@@ -22,15 +22,15 @@
       <header class="toolbar toolbar-header">
         <div class="toolbar-actions">
           <div class="btn-group">
-            <button class="btn btn-default">
+            <button class="btn btn-default" onclick="increaseFontSize()">
               <span class="icon icon-plus"></span>
             </button>
-            <button class="btn btn-default">
+            <button class="btn btn-default" onclick="decreaseFontSize()">
               <span class="icon icon-minus"></span>
             </button>
           </div>
 
-          <button class="btn btn-default pull-right">
+          <button class="btn btn-default pull-right" onclick="saveText()">
             <span class="icon icon-download icon-text"></span>
             Save
           </button>
@@ -43,4 +43,26 @@
       </div>
     </div>
   </body>
+  <script>
+    // Getting the textarea field
+    let textarea = document.querySelector("textarea");
+    // Default Font Size of the text area
+    let defaultFontSize = 20;
+
+    // Function which increase Font Size
+    function increaseFontSize() {
+      textarea.style.fontSize = `${++defaultFontSize}px`;
+    }
+
+    // Function which decrease Font Size
+    function decreaseFontSize() {
+      textarea.style.fontSize = `${--defaultFontSize}px`;
+    }
+
+    // Saving the text to a file
+    function saveText() {
+      let text = textarea.value;
+      console.log(text);
+    }
+  </script>
 </html>
