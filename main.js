@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("node:path");
 const fs = require("fs");
 
@@ -12,12 +12,18 @@ const createWindow = () => {
   });
 
   // Listening to IPC
-  ipcMain.on("save", (event, text) => {
+  ipcMain.on("save", async (event, text) => {
     // Save the text to a file
-    fs.writeFile("samplefile.txt", text, (err) => {
-      if (err) console.log("There was an error saving the file.", err);
-      console.log("File has been saved.");
+    let fullpath = await dialog.showSaveDialog(win, {
+      defaultPath: "filename.txt",
     });
+
+    if (!fullpath.canceled) {
+      fs.writeFile(fullpath.filePath, text, (err) => {
+        if (err) console.log("There was an error saving the file.", err);
+        console.log("File has been saved.");
+      });
+    }
   });
 
   // Removing the default menu on the window
