@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
+const fs = require("fs");
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -12,7 +13,11 @@ const createWindow = () => {
 
   // Listening to IPC
   ipcMain.on("save", (event, text) => {
-    console.log(text);
+    // Save the text to a file
+    fs.writeFile("samplefile.txt", text, (err) => {
+      if (err) console.log("There was an error saving the file.", err);
+      console.log("File has been saved.");
+    });
   });
 
   // Removing the default menu on the window
