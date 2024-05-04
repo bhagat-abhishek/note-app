@@ -6,6 +6,8 @@ const createWindow = () => {
     height: 600,
   });
 
+  // Removing the default menu on the window
+  win.removeMenu();
   win.loadFile("index.html");
 };
 
