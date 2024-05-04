@@ -11,4 +11,14 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
   createWindow();
+
+  // Openining the default window if OS == MAC | Specific to Linux
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+
+  // Quiting the application if OS == Windows and all the windows are closed
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") app.quit();
+  });
 });
