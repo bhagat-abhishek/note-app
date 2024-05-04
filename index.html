@@ -62,7 +62,7 @@
     // Saving the text to a file
     function saveText() {
       let text = textarea.value;
-      console.log(text);
+      window.electronAPI.save(text);
     }
   </script>
 </html>
