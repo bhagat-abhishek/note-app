@@ -4,8 +4,11 @@
   "description": "This is a simple note taking app.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "author": "Abby - (Abishek Bhagat)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.2"
+  }
 }
