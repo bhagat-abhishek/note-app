@@ -64,5 +64,19 @@
       let text = textarea.value;
       window.electronAPI.save(text);
     }
+
+    window.electronAPI.saved((value) => {
+      if (value == "success") {
+        console.log("File has been saved.");
+        textarea.style.backgroundColor = "#b2ff99";
+      } else {
+        console.log("Something went wrong.");
+        textarea.style.backgroundColor = "#ff8989";
+      }
+
+      setTimeout(() => {
+        textarea.style.backgroundColor = "";
+      }, 300);
+    });
   </script>
 </html>

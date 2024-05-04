@@ -28,16 +28,16 @@ const createWindow = () => {
         // Updating the file path before saving
         savedFilePath = fullpath.filePath;
         // saving - writing data to a file
-        writeToFile(savedFilePath, text);
+        writeToFile(savedFilePath, text, win);
       }
     } else {
       // saving - writing data to a file
-      writeToFile(savedFilePath, text);
+      writeToFile(savedFilePath, text, win);
     }
   });
 
   // Removing the default menu on the window
-  win.removeMenu();
+  // win.removeMenu();
   win.loadFile("index.html");
 };
 
@@ -55,11 +55,10 @@ app.whenReady().then(() => {
   });
 });
 
-
 // Function to write file to a given path with the data
-function writeToFile(path, data) {
+function writeToFile(path, data, window) {
   fs.writeFile(path, data, (err) => {
-    if (err) console.log("There was an error saving the file.", err);
-    console.log("File has been saved.");
+    if (err) console.log("Something went wrong saving the file.", err);
+    window.webContents.send("saved", "success");
   });
 }
