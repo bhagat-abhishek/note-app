@@ -37,7 +37,7 @@ const createWindow = () => {
   });
 
   // Removing the default menu on the window
-  win.removeMenu();
+  // win.removeMenu();
   win.loadFile("index.html");
 };
 
